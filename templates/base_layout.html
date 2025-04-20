@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Default Title{% endblock title %}</title>
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <div class="logo">
+            <a href="/"><img src="{% static '/img/ip.jpeg' %}"></a>
+        </div>
+        <nav class="mainnav">
+            <ul>
+                <li><a href ='/'>Главная</a></li>
+                <li><a href="{% url 'articles:article_detail' slug='article-title-cpp' %}">Лучшая статья</a></li>
+                <li><a href="{% url 'homepage' %}">Статьи</a></li>
+                <li><a href="{% url 'aboutus' %}">О нас</a></li>
+                {% if not user.is_authenticated %}
+                    <li><a href="{% url 'accounts:signup' %}">Зарегать аккаунт</a></li>
+                    <li><a href="{% url 'accounts:login'  %}" class="lopg">Зайти на аккаунт</a></li>
+                {% else %}
+
+                    <form class="form" action="{% url 'accounts:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="buttonlogout">Выйти</button>
+                    </form>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock content %}
+    </main>
+<footer>
+    <div class="logo">
+        <a href="/"><img src="{% static '/img/ip.jpeg' %}"></a>
+    </div>
+    <nav class="mainnav">
+        <ul>
+            <li><a href ='/'>Главная</a></li>
+            <li><a href="{% url 'articles:article_detail' slug='article-title-3' %}">Лучшая статья</a></li>
+            <li><a href="{% url 'homepage' %}">Статьи</a></li>
+            <li><a href="{% url 'aboutus' %}">О нас</a></li>
+            {% if not user.is_authenticated %}
+                <li><a href="{% url 'accounts:signup' %}">Зарегать аккаунт</a></li>
+                <li><a href="{% url 'accounts:login'  %}" class="lopg">Зайти на аккаунт</a></li>
+            {% else %}
+
+                <form class="form" action="{% url 'accounts:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="buttonlogout">Выйти</button>
+                </form>
+            {% endif %}
+        </ul>
+    </nav>
+</footer>
+</div>
+</body>
+</html>

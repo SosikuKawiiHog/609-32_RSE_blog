@@ -1,0 +1,15 @@
+{% extends "base_layout.html" %}
+{% block title %}{{ article.title }}{% endblock title %}
+{% block content %}
+    <h1>ЗАЙТИ</h1>
+    <div class="divform">
+        <form class="form" action="{% url 'accounts:login' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <button type="submit" class="buttonmain">Login</button>
+        </form>
+    </div>
+{% endblock content %}

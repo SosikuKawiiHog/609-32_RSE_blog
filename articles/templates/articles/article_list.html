@@ -1,0 +1,43 @@
+{% extends "base_layout.html" %}
+{% block title %}Article List{% endblock title %}
+{% block content %}
+    <main>
+        <h1>Список статей</h1>
+        <nav>
+            <ul class="logul">
+                {% if user.is_authenticated %}
+                <li>
+                    <form class="form" action="{% url 'accounts:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="buttonlog">Выйти</button>
+                    </form>
+                </li>
+                    <a href="{% url 'articles:create' %}"><button class="buttonlog">Создать статью</button></a>
+                {% else %}
+                <li>
+                    <div class="login">
+                        <a href="{% url 'accounts:login' %}" class="log">Зайти</a>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div class="articles">
+            {% for element in articles %}
+            <div class="article__item">
+                <h2>
+                    <a href="{% url 'articles:article_detail' slug=element.slug %}">
+                        {{ element.title }}
+                    </a>
+                </h2>
+                <p>
+                    {{ element.snippet }}
+                </p>
+                <time>
+                    {{ element.date }}
+                </time>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock content %}
