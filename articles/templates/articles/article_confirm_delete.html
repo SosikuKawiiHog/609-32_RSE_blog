@@ -1,0 +1,13 @@
+{%  extends "base_layout.html" %}
+{% load static %}
+{% block title %}{{ article.title }}{% endblock title %}
+{% block content %}
+<div class="article-confirm-delete">
+    <h1 class="mb-3">Вы уверены?</h1>
+    <form class="form" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Да</button>
+        <a href="{% url 'homepage' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock content %}

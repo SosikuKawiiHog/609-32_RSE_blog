@@ -207,3 +207,73 @@ main{
     cursor: pointer;
     font-size: 16px;
 }
+@media (max-width: 768px) {
+    header, footer {
+        flex-direction: column;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .logo img {
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        padding: 0;
+        flex-direction: column;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 5px 0;
+    }
+
+    .articles, .article__item {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .article-detail img {
+        max-height: 200px;
+    }
+
+    .director {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .aboutimg {
+        width: 100px;
+        height: 100px;
+        margin-top: 10px;
+    }
+
+    .form {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .divform {
+        width: 100%;
+    }
+
+    .buttonmain, .buttonlog, .log, .buttonlogout {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .logul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .article-confirm-delete {
+        text-align: center;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+    }
+}

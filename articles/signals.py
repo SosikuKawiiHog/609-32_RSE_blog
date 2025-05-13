@@ -8,5 +8,6 @@ from articles.models import Article
 
 @receiver(signals.pre_save, sender=Article)
 def create_slug(sender, instance, **kwargs):
-    slug_str = "%s %s" % (instance.title, get_random_string(length=4))
-    instance.slug = slugify(slug_str)
+    if not instance.slug:
+        slug_str = "%s %s" % (instance.title, get_random_string(length=4))
+        instance.slug = slugify(slug_str)
